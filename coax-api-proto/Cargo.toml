@@ -9,5 +9,5 @@ homepage    = "https://github.com/wireapp/coax"
 description = "Wire message type definition (protocol buffers)"
 
 [dependencies]
-protobuf = ">= 1.0"
-uuid     = { version = ">= 0.3", features = ["v4", "v5"] }
+protobuf = "1.4.1"
+uuid     = { version = "0.5.1", features = ["v4", "v5"] }

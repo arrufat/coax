@@ -10,7 +10,7 @@ description = "TLS networking and HTTP support."
 
 [dependencies]
 cookie      = ">= 0.6.1"
-flate2      = ">= 0.2"
+flate2      = "0.2.20"
 httparse    = ">= 1.1"
 json-codec  = ">= 0.4"
 slog        = ">= 2.0"

@@ -10,7 +10,7 @@ pub struct Tls(SslConnector);
 // TODO: public key pinning
 pub fn context() -> Result<Tls, Error> {
     let mut b = SslConnectorBuilder::new(SslMethod::tls())?;
-    let     o = b.builder().options() | ssl::SSL_OP_NO_TLSV1;
+    let     o = b.builder().options() | ssl::SslOptions::NO_TLSV1;
     b.builder_mut().set_options(o);
     Ok(Tls(b.build()))
 }
