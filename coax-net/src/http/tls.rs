@@ -1,6 +1,6 @@
 use std::io::{self, Read, Write};
 use std::net::TcpStream;
-use openssl::ssl::{self, SslConnectorBuilder, SslConnector};
+use openssl::ssl::{self, SslConnector};
 use openssl::ssl::{SslStream, SslMethod};
 use openssl::error::ErrorStack;
 use super::AsTcp;
@@ -9,9 +9,9 @@ pub struct Tls(SslConnector);
 
 // TODO: public key pinning
 pub fn context() -> Result<Tls, Error> {
-    let mut b = SslConnectorBuilder::new(SslMethod::tls())?;
-    let     o = b.builder().options() | ssl::SslOptions::NO_TLSV1;
-    b.builder_mut().set_options(o);
+    let mut b = SslConnector::builder(SslMethod::tls())?;
+    let     o = b.options() | ssl::SslOptions::NO_TLSV1;
+    b.set_options(o);
     Ok(Tls(b.build()))
 }
 
