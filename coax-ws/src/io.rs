@@ -5,7 +5,7 @@ use std::net::{ToSocketAddrs, TcpStream};
 use std::str;
 use std::time::Duration;
 
-use rand::{Rng, thread_rng};
+use rand::{Rng, RngCore, thread_rng};
 use openssl;
 use openssl::hash::{Hasher, MessageDigest};
 use base64;
@@ -272,7 +272,7 @@ fn nonce_check(theirs: &[u8], ours: &[u8]) -> Result<bool, Error> {
     let mut h = Hasher::new(MessageDigest::sha1())?;
     h.update(ours)?;
     h.update(MAGIC_UUID.as_bytes())?;
-    let sha1 = h.finish2()?;
+    let sha1 = h.finish()?;
     let b64  = base64::encode(&sha1);
     Ok(b64.as_bytes() == theirs) // TODO: trim theirs
 }
